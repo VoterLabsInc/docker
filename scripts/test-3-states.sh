@@ -1,3 +1,9 @@
+# give root privileges to this bash script
+if [[ $EUID -ne 0 ]];
+then
+    exec sudo /bin/bash "$0" "$@"
+fi
+
 #!/bin/bash
 set -x
 
@@ -8,8 +14,6 @@ mkdir /code /test
 chown 1000:1000 /code /test
 
 # clone repo
-cd /code
-git clone https://github.com/VoterLabsInc/docker.git
 cd docker
 
 # install pelias script
