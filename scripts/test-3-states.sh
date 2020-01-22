@@ -1,17 +1,11 @@
-# give root privileges to this bash script
-if [[ $EUID -ne 0 ]];
-then
-    exec sudo /bin/bash "$0" "$@"
-fi
-
 #!/bin/bash
 set -x
 
 # create directories
-mkdir /code /test
+mkdir /home/$USER/test-3-states
 
 # set proper permissions. make sure the user matches your `DOCKER_USER` setting in `.env`
-chown 1000:1000 /code /test
+chown 1000:1000 /home/$USER/test-3-states
 
 # clone repo
 cd docker
@@ -24,7 +18,7 @@ cd projects/united-states-test-3-states
 
 # configure environment
 sed -i '/DATA_DIR/d' .env
-echo 'DATA_DIR=/test' >> .env
+echo 'DATA_DIR=/home/'$USER'/test-3-states' >> .env
 
 # run build
 pelias compose pull
