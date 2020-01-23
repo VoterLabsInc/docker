@@ -4,10 +4,6 @@ set -x
 # create directories
 mkdir /home/$USER/whole-us
 
-# set proper permissions. make sure the user matches your `DOCKER_USER` setting in `.env`
-chown 1000:1000 docker /home/$USER/whole-us
-
-# clone repo
 cd docker
 
 # install pelias script
