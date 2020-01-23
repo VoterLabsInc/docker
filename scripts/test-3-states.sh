@@ -4,13 +4,11 @@ set -x
 # create directories
 mkdir /home/$USER/test-3-states
 
-cd docker
-
 # install pelias script
-ln -s "$(pwd)/pelias" /usr/local/bin/pelias
+alias pelias='$(pwd)/docker/pelias'
 
 # cwd
-cd projects/united-states-test-3-states
+cd docker/projects/united-states-test-3-states
 
 # configure environment
 sed -i '/DATA_DIR/d' .env
