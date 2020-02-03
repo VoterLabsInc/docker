@@ -6,14 +6,14 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 set -x
 
 # create directories
-mkdir /home/$USER/northwestern
+mkdir /home/$USER/test-3-states
 
 # cwd
-cd docker/projects/united-states-northwestern
+cd docker/projects/united-states-test-3-states
 
 # configure environment
 sed -i '/DATA_DIR/d' .env
-echo 'DATA_DIR=/home/'$USER'/northwestern' >> .env
+echo 'DATA_DIR=/home/'$USER'/test-3-states' >> .env
 
 # run build
 
