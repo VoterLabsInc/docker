@@ -14,7 +14,7 @@ services:
     container_name: pelias_schema
     user: "${DOCKER_USER}"
     volumes:
-      - "./pelias.json:/code/pelias.json"
+      - "./pelias.json:/home/whitewind/lat-lon-tool/docker/projects/united-states-test-5-states/pelias.json"
   api:
     image: pelias/api:master
     container_name: pelias_api
@@ -23,7 +23,7 @@ services:
     environment: [ "PORT=4000" ]
     ports: [ "4000:4000" ]
     volumes:
-      - "./pelias.json:/code/pelias.json"
+      - "./pelias.json:/home/whitewind/lat-lon-tool/docker/projects/united-states-test-5-states/pelias.json"
   placeholder:
     image: pelias/placeholder:master
     container_name: pelias_placeholder
@@ -32,63 +32,63 @@ services:
     environment: [ "PORT=4100" ]
     ports: [ "4100:4100" ]
     volumes:
-      - "./pelias.json:/code/pelias.json"
-      - "${DATA_DIR}:/test"
-      - "./blacklist/:/test/blacklist"
+      - "./pelias.json:/home/whitewind/lat-lon-tool/docker/projects/united-states-test-5-states/pelias.json"
+      - "${DATA_DIR}:/home/whitewind/test-5-states"
+      - "./blacklist/:/home/whitewind/test-5-states/blacklist"
   whosonfirst:
     image: pelias/whosonfirst:master
     container_name: pelias_whosonfirst
     user: "${DOCKER_USER}"
     volumes:
-      - "./pelias.json:/code/pelias.json"
-      - "${DATA_DIR}:/test"
-      - "./blacklist/:/test/blacklist"
+      - "./pelias.json:/home/whitewind/lat-lon-tool/docker/projects/united-states-test-5-states/pelias.json"
+      - "${DATA_DIR}:/home/whitewind/test-5-states/test"
+      - "./blacklist/:/home/whitewind/test-5-states/blacklist"
   openstreetmap:
     image: pelias/openstreetmap:master
     container_name: pelias_openstreetmap
     user: "${DOCKER_USER}"
     volumes:
-      - "./pelias.json:/code/pelias.json"
-      - "${DATA_DIR}:/test"
-      - "./blacklist/:/test/blacklist"
+      - "./pelias.json:/home/whitewind/lat-lon-tool/docker/projects/united-states-test-5-states/pelias.json"
+      - "${DATA_DIR}:/home/whitewind/test-5-states"
+      - "./blacklist/:/home/whitewind/test-5-states/blacklist"
   openaddresses:
     image: pelias/openaddresses:master
     container_name: pelias_openaddresses
     user: "${DOCKER_USER}"
     volumes:
-      - "./pelias.json:/code/pelias.json"
-      - "${DATA_DIR}:/test"
-      - "./blacklist/:/test/blacklist"
+      - "./pelias.json:/home/whitewind/lat-lon-tool/docker/projects/united-states-test-5-states/pelias.json"
+      - "${DATA_DIR}:/home/whitewind/test-5-states"
+      - "./blacklist/:/home/whitewind/test-5-states/blacklist"
   geonames:
     image: pelias/geonames:master
     container_name: pelias_geonames
     user: "${DOCKER_USER}"
     volumes:
-      - "./pelias.json:/code/pelias.json"
-      - "${DATA_DIR}:/test"
-      - "./blacklist/:/test/blacklist"
+      - "./pelias.json:/home/whitewind/lat-lon-tool/docker/projects/united-states-test-5-states/pelias.json"
+      - "${DATA_DIR}:/home/whitewind/test-5-states"
+      - "./blacklist/:/home/whitewind/test-5-states/blacklist"
   csv-importer:
     image: pelias/csv-importer:master
     container_name: pelias_csv_importer
     user: "${DOCKER_USER}"
     volumes:
-      - "./pelias.json:/code/pelias.json"
-      - "${DATA_DIR}:/test"
-      - "./blacklist/:/test/blacklist"
+      - "./pelias.json:/home/whitewind/lat-lon-tool/docker/projects/united-states-test-5-states/pelias.json"
+      - "${DATA_DIR}:/home/whitewind/test-5-states"
+      - "./blacklist/:/home/whitewind/test-5-states/blacklist"
   transit:
     image: pelias/transit:master
     container_name: pelias_transit
     user: "${DOCKER_USER}"
     volumes:
-      - "./pelias.json:/code/pelias.json"
-      - "${DATA_DIR}:/test"
+      - "./pelias.json:/home/whitewind/lat-lon-tool/docker/projects/united-states-test-5-states/pelias.json"
+      - "${DATA_DIR}:/home/whitewind/test-5-states"
   polylines:
     image: pelias/polylines:master
     container_name: pelias_polylines
     user: "${DOCKER_USER}"
     volumes:
-      - "./pelias.json:/code/pelias.json"
-      - "${DATA_DIR}:/test"
+      - "./pelias.json:/home/whitewind/lat-lon-tool/docker/projects/united-states-test-5-states/pelias.json"
+      - "${DATA_DIR}:/home/whitewind/test-5-states"
   interpolation:
     image: pelias/interpolation:master
     container_name: pelias_interpolation
@@ -97,8 +97,8 @@ services:
     environment: [ "PORT=4300" ]
     ports: [ "4300:4300" ]
     volumes:
-      - "./pelias.json:/code/pelias.json"
-      - "${DATA_DIR}:/test"
+      - "./pelias.json:/home/whitewind/lat-lon-tool/docker/projects/united-states-test-5-states/pelias.json"
+      - "${DATA_DIR}:/home/whitewind/test-5-states"
   pip:
     image: pelias/pip-service:master
     container_name: pelias_pip-service
@@ -107,8 +107,8 @@ services:
     environment: [ "PORT=4200" ]
     ports: [ "4200:4200" ]
     volumes:
-      - "./pelias.json:/code/pelias.json"
-      - "${DATA_DIR}:/test"
+      - "./pelias.json:/home/whitewind/lat-lon-tool/docker/projects/united-states-test-5-states/pelias.json"
+      - "${DATA_DIR}:/home/whitewind/test-5-states"
   elasticsearch:
     image: pelias/elasticsearch:6.8.5
     container_name: pelias_elasticsearch
@@ -133,5 +133,5 @@ services:
     restart: "no"
     command: "--help"
     volumes:
-      - "./pelias.json:/code/pelias.json"
-      - "./test_cases:/code/pelias/fuzzy-tester/test_cases"
+      - "./pelias.json:/home/whitewind/lat-lon-tool/docker/projects/united-states-test-5-states/pelias.json"
+      - "./test_cases:/home/whitewind/lat-lon-tool/docker/projects/united-states-test-5-states/pelias/fuzzy-tester/test_cases"
