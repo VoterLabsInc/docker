@@ -33,56 +33,56 @@ services:
     ports: [ "4100:4100" ]
     volumes:
       - "./docker/projects/united-states-test-5-states/pelias.json:/home/whitewind/lat-lon-tool/pelias.json"
-      - ":/home/whitewind/test-5-states"
+      - "${DATA_DIR}:/home/whitewind/test-5-states"
   whosonfirst:
     image: pelias/whosonfirst:master
     container_name: pelias_whosonfirst
     user: ${DOCKER_USER}
     volumes:
       - "./docker/projects/united-states-test-5-states/pelias.json:/home/whitewind/lat-lon-tool/pelias.json"
-      - ":/home/whitewind/test-5-states"
+      - "${DATA_DIR}:/home/whitewind/test-5-states"
   openstreetmap:
     image: pelias/openstreetmap:master
     container_name: pelias_openstreetmap
     user: ${DOCKER_USER}
     volumes:
       - "./docker/projects/united-states-test-5-states/pelias.json:/home/whitewind/lat-lon-tool/pelias.json"
-      - ":/home/whitewind/test-5-states"
+      - "${DATA_DIR}:/home/whitewind/test-5-states"
   openaddresses:
     image: pelias/openaddresses:master
     container_name: pelias_openaddresses
     user: ${DOCKER_USER}
     volumes:
       - "./docker/projects/united-states-test-5-states/pelias.json:/home/whitewind/lat-lon-tool/pelias.json"
-      - ":/home/whitewind/test-5-states"
+      - "${DATA_DIR}:/home/whitewind/test-5-states"
   geonames:
     image: pelias/geonames:master
     container_name: pelias_geonames
     user: ${DOCKER_USER}
     volumes:
       - "./docker/projects/united-states-test-5-states/pelias.json:/home/whitewind/lat-lon-tool/pelias.json"
-      - ":/home/whitewind/test-5-states"
+      - "${DATA_DIR}:/home/whitewind/test-5-states"
   csv-importer:
     image: pelias/csv-importer:master
     container_name: pelias_csv_importer
     user: ${DOCKER_USER}
     volumes:
       - "./docker/projects/united-states-test-5-states/pelias.json:/home/whitewind/lat-lon-tool/pelias.json"
-      - ":/home/whitewind/test-5-states"
+      - "${DATA_DIR}:/home/whitewind/test-5-states"
   transit:
     image: pelias/transit:master
     container_name: pelias_transit
     user: ${DOCKER_USER}
     volumes:
       - "./docker/projects/united-states-test-5-states/pelias.json:/home/whitewind/lat-lon-tool/pelias.json"
-      - ":/home/whitewind/test-5-states"
+      - "${DATA_DIR}:/home/whitewind/test-5-states"
   polylines:
     image: pelias/polylines:master
     container_name: pelias_polylines
     user: ${DOCKER_USER}
     volumes:
       - "./docker/projects/united-states-test-5-states/pelias.json:/home/whitewind/lat-lon-tool/pelias.json"
-      - ":/home/whitewind/test-5-states"
+      - "${DATA_DIR}:/home/whitewind/test-5-states"
   interpolation:
     image: pelias/interpolation:master
     container_name: pelias_interpolation
@@ -92,7 +92,7 @@ services:
     ports: [ "4300:4300" ]
     volumes:
       - "./docker/projects/united-states-test-5-states/pelias.json:/home/whitewind/lat-lon-tool/pelias.json"
-      - ":/home/whitewind/test-5-states"
+      - "${DATA_DIR}:/home/whitewind/test-5-states"
   pip:
     image: pelias/pip-service:master
     container_name: pelias_pip-service
@@ -102,7 +102,7 @@ services:
     ports: [ "4200:4200" ]
     volumes:
       - "./docker/projects/united-states-test-5-states/pelias.json:/home/whitewind/lat-lon-tool/pelias.json"
-      - ":/home/whitewind/test-5-states"
+      - "${DATA_DIR}:/home/whitewind/test-5-states"
   elasticsearch:
     image: pelias/elasticsearch:6.8.5
     container_name: pelias_elasticsearch
@@ -111,7 +111,7 @@ services:
     environment: [ "ES_JAVA_OPTS=-Xmx8g" ]
     ports: [ "9200:9200", "9300:9300" ]
     volumes:
-      - "/elasticsearch:/usr/share/elasticsearch/test"
+      - "${DATA_DIR}/elasticsearch:/usr/share/elasticsearch/test"
     ulimits:
       memlock:
         soft: -1

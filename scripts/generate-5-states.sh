@@ -1,5 +1,6 @@
 USER=$USER
 DOCKER_USER="$""{DOCKER_USER}"
+DATA_DIR="$""{DATA_DIR}"
 
 cat >./docker/projects/united-states-test-5-states/pelias.json <<EOF
     {
