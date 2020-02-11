@@ -1,6 +1,6 @@
 USER=$USER
 
-cat >../projects/united-states-test-5-states/pelias.json <<EOF
+cat >./docker/projects/united-states-test-5-states/pelias.json <<EOF
     {
         "logger": {
             "level": "info",
@@ -297,4 +297,138 @@ cat >../projects/united-states-test-5-states/pelias.json <<EOF
         }
     }
 
+EOF
+
+cat >./docker/projects/united-states-test-5-states/docker-compose.yml <<EOF
+version: '3'
+networks:
+  default:
+    driver: bridge
+services:
+  libpostal:
+    image: pelias/libpostal-service
+    container_name: pelias_libpostal
+    user: "${DOCKER_USER}"
+    restart: always
+    ports: [ "4400:4400" ]
+  schema:
+    image: pelias/schema:master
+    container_name: pelias_schema
+    user: "${DOCKER_USER}"
+    volumes:
+      - "./docker/projects/united-states-test-5-states/pelias.json:/home/$USER/lat-lon-tool/pelias.json"
+  api:
+    image: pelias/api:master
+    container_name: pelias_api
+    user: "${DOCKER_USER}"
+    restart: always
+    environment: [ "PORT=4000" ]
+    ports: [ "4000:4000" ]
+    volumes:
+      - "./docker/projects/united-states-test-5-states/pelias.json:/home/$USER/lat-lon-tool/pelias.json"
+  placeholder:
+    image: pelias/placeholder:master
+    container_name: pelias_placeholder
+    user: "${DOCKER_USER}"
+    restart: always
+    environment: [ "PORT=4100" ]
+    ports: [ "4100:4100" ]
+    volumes:
+      - "./docker/projects/united-states-test-5-states/pelias.json:/home/$USER/lat-lon-tool/pelias.json"
+      - "${DATA_DIR}:/home/$USER/test-5-states"
+  whosonfirst:
+    image: pelias/whosonfirst:master
+    container_name: pelias_whosonfirst
+    user: "${DOCKER_USER}"
+    volumes:
+      - "./docker/projects/united-states-test-5-states/pelias.json:/home/$USER/lat-lon-tool/pelias.json"
+      - "${DATA_DIR}:/home/$USER/test-5-states"
+  openstreetmap:
+    image: pelias/openstreetmap:master
+    container_name: pelias_openstreetmap
+    user: "${DOCKER_USER}"
+    volumes:
+      - "./docker/projects/united-states-test-5-states/pelias.json:/home/$USER/lat-lon-tool/pelias.json"
+      - "${DATA_DIR}:/home/$USER/test-5-states"
+  openaddresses:
+    image: pelias/openaddresses:master
+    container_name: pelias_openaddresses
+    user: "${DOCKER_USER}"
+    volumes:
+      - "./docker/projects/united-states-test-5-states/pelias.json:/home/$USER/lat-lon-tool/pelias.json"
+      - "${DATA_DIR}:/home/$USER/test-5-states"
+  geonames:
+    image: pelias/geonames:master
+    container_name: pelias_geonames
+    user: "${DOCKER_USER}"
+    volumes:
+      - "./docker/projects/united-states-test-5-states/pelias.json:/home/$USER/lat-lon-tool/pelias.json"
+      - "${DATA_DIR}:/home/$USER/test-5-states"
+  csv-importer:
+    image: pelias/csv-importer:master
+    container_name: pelias_csv_importer
+    user: "${DOCKER_USER}"
+    volumes:
+      - "./docker/projects/united-states-test-5-states/pelias.json:/home/$USER/lat-lon-tool/pelias.json"
+      - "${DATA_DIR}:/home/$USER/test-5-states"
+  transit:
+    image: pelias/transit:master
+    container_name: pelias_transit
+    user: "${DOCKER_USER}"
+    volumes:
+      - "./docker/projects/united-states-test-5-states/pelias.json:/home/$USER/lat-lon-tool/pelias.json"
+      - "${DATA_DIR}:/home/$USER/test-5-states"
+  polylines:
+    image: pelias/polylines:master
+    container_name: pelias_polylines
+    user: "${DOCKER_USER}"
+    volumes:
+      - "./docker/projects/united-states-test-5-states/pelias.json:/home/$USER/lat-lon-tool/pelias.json"
+      - "${DATA_DIR}:/home/$USER/test-5-states"
+  interpolation:
+    image: pelias/interpolation:master
+    container_name: pelias_interpolation
+    user: "${DOCKER_USER}"
+    restart: always
+    environment: [ "PORT=4300" ]
+    ports: [ "4300:4300" ]
+    volumes:
+      - "./docker/projects/united-states-test-5-states/pelias.json:/home/$USER/lat-lon-tool/pelias.json"
+      - "${DATA_DIR}:/home/$USER/test-5-states"
+  pip:
+    image: pelias/pip-service:master
+    container_name: pelias_pip-service
+    user: "${DOCKER_USER}"
+    restart: always
+    environment: [ "PORT=4200" ]
+    ports: [ "4200:4200" ]
+    volumes:
+      - "./docker/projects/united-states-test-5-states/pelias.json:/home/$USER/lat-lon-tool/pelias.json"
+      - "${DATA_DIR}:/home/$USER/test-5-states"
+  elasticsearch:
+    image: pelias/elasticsearch:6.8.5
+    container_name: pelias_elasticsearch
+    user: "${DOCKER_USER}"
+    restart: always
+    environment: [ "ES_JAVA_OPTS=-Xmx8g" ]
+    ports: [ "9200:9200", "9300:9300" ]
+    volumes:
+      - "${DATA_DIR}/elasticsearch:/usr/share/elasticsearch/test"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
+    cap_add: [ "IPC_LOCK" ]
+  fuzzy-tester:
+    image: pelias/fuzzy-tester:master
+    container_name: pelias_fuzzy_tester
+    user: "${DOCKER_USER}"
+    restart: "no"
+    command: "--help"
+    volumes:
+      - "./docker/projects/united-states-test-5-states/pelias.json:/home/$USER/lat-lon-tool/pelias.json"
+      - "./docker/projects/united-states-test-5-states/test_cases:/home/$USER/lat-lon-tool/pelias/fuzzy-tester/test_cases"
 EOF
