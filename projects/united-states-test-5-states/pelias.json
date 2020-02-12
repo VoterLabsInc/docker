@@ -36,7 +36,7 @@
             "enabled": true
             },
             "geonames": {
-            "datapath": "/home/whitewind/test-5-states/geonames",
+            "datapath": "/data/geonames",
             "countryCode": "US"
             },
             "openstreetmap": {
@@ -48,7 +48,7 @@
                 {"sourceURL": "https://download.geofabrik.de/north-america/us/oregon-latest.osm.pbf"}
             ],
             "leveldbpath": "/tmp",
-            "datapath": "/home/whitewind/test-5-states/openstreetmap",
+            "datapath": "/data/openstreetmap",
             "import": [
                 {"filename": "florida-latest.osm.pbf"},
                 {"filename": "illinois-latest.osm.pbf"},
@@ -58,7 +58,7 @@
             ]
             },
             "openaddresses": {
-            "datapath": "/home/whitewind/test-5-states/openaddresses",
+            "datapath": "/data/openaddresses",
             "files": [
                 "us/fl/_loveland.csv",
                 "us/fl/alachua.csv",
@@ -267,11 +267,11 @@
             ]
             },
             "polyline": {
-            "datapath": "/home/whitewind/test-5-states/polylines",
-            "files": [ "extract.0sv" ]
+            "datapath": "/data/polylines",
+            "files": [ "extract.0sv", "extract.1sv", "extract.2sv", "extract.3sv", "extract.4sv" ]
             },
             "whosonfirst": {
-            "datapath": "/home/whitewind/test-5-states/whosonfirst",
+            "datapath": "/data/whosonfirst",
             "importPostalcodes": true,
             "importPlace": [
                 "85688651",
@@ -284,7 +284,7 @@
             "interpolation": {
             "download": {
                 "tiger": {
-                "datapath": "/home/whitewind/test-5-states/tiger",
+                "datapath": "/data/tiger",
                 "states": [
                     { "state_code": 41, "county_code": 67, "name": "Washington County, OR" }
                 ]

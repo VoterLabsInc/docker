@@ -15,8 +15,10 @@ cd docker/projects/united-states-test-5-states
 sed -i '/DATA_DIR/d' .env
 echo 'DATA_DIR=/home/'$USER'/test-5-states' >> .env
 
-# run build
+#pelias script
+alias pelias='../../pelias'
 
+# run build
 function pelias () {
   $DIR/../pelias compose pull
   $DIR/../pelias elastic start

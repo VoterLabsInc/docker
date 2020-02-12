@@ -1670,7 +1670,7 @@
     },
     "polyline": {
       "datapath": "/data/polylines",
-      "files": [ "extract.0sv" ]
+      "files": [ "extract.0sv", "extract.1sv", "extract.2sv", "extract.3sv", "extract.4sv" ]
     },
     "whosonfirst": {
       "datapath": "/data/whosonfirst",
